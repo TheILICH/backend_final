@@ -2,9 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Base</title>
+    <title>Lab Forms</title>
+    <link rel="stylesheet" href="style.css">
+    <script type = "text/javascript"
+            src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type = "text/javascript"
+            src = "https://www.tutorialspoint.com/jquery/jquery-3.6.0.js">
+    </script>
 </head>
 <body>
-  <h1>dfghjfgk</h1>  
+    <div class="container">
+        <div class="div" id="front">
+            <div class="login">
+                <div class="circle"></div>
+                <h2 id="login-h2"> LOGIN </h2>
+                <label class="input">
+                    Email
+                    <input id="frontEmail" class="in" type="email">
+                </label>
+                <div id="password">
+                    <label class="input">
+                        Password
+                        <input id="frontPassword" class="in" type="password">
+                    </label>
+                </div>
+
+                <div class="for-btn">
+                    <button class="btn" onclick="log_php(frontEmail.value, frontPassword.value)"> SUBMIT </button>
+                </div>
+            </div>
+            <div class="for-txt">
+                Not have an account?
+                <div class="decoration" onclick="Rotate()"> Sign up here </div>
+            </div>
+
+        </div>
+
+
+        <div class="div" id="back">
+            <div class="login">
+                    <div class="circle"></div>
+                    <h2 id="sign-up"> SIGN UP</h2>
+                <label class="input">
+                    Name
+                    <input id="backName" class="in" type="text">
+                </label>
+
+                <label class="input">
+                    Surname
+                    <input id="backSurname" class="in" type="text">
+                </label>
+
+                <label class="input">
+                    Email
+                    <input id="backEmail" class="in" type="text">
+                </label>
+
+                <label class="input">
+                    Password
+                    <input id="backPassword" class="in" type="password">
+                </label>
+
+                <label class="input">
+                    Confirm Password
+                    <input id="backConfirm" class="in" type="password">
+                </label>
+
+                <div id="for-btn" class="for-btn">
+                    <button class="btn" onclick="reg_php(backEmail.value, backPassword.value, backConfirm.value)"> SUBMIT </button>
+                </div>
+
+                <div class="back-txt for-txt">
+                    By clicking the Sign-Up button, you agree to our
+                    <div id="line">
+                        <div class="decoration">Terms and Condition</div> and <div class="decoration">Policy Privacy</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="for-txt">
+                Already have an account?
+                <div class="decoration" onclick="Reset()"> Login here </div>
+            </div>
+        </div>
+
+    </div>
 </body>
+<script>
+
+let user = "";
+
+let front = document.getElementById("front"), back = document.getElementById("back");
+
+let rotate =
+    {
+        'transform': 'rotateY(180deg)'
+    }
+
+let reset =
+    {
+        'transform': 'rotateY(0deg)'
+    }
+
+
+const Rotate = () =>
+{
+    Object.assign(front.style, rotate);
+    Object.assign(back.style, reset);
+}
+
+const Reset = () =>
+{
+    Object.assign(front.style, reset);
+    Object.assign(back.style, rotate);
+}
+
+const backSubmit = () =>
+{
+    let name = document.getElementById("backName").value, surname = document.getElementById("backSurname").value, email = document.getElementById("backEmail").value, password = document.getElementById("backPassword").value, confirm = document.getElementById("backConfirm").value;
+
+    let mails = ['@gmail.com', '@mail.ru', '@stu.sdu.edu.kz'];
+    let e = false;
+    for (let x of mails) e |= email.endsWith(x);
+
+    let p = password === confirm;
+
+    if (!e)
+    {
+        alert(`Your email is wrong. It should end with one of the ${mails.join(' ')} Please write your email.`);
+    }
+
+    if (!p)
+    {
+        alert("Your confirmation password doesn't match. Please try again.");
+    }
+
+    if (e && p) start();
+}
+
+const start = (name) =>
+{
+    let arr = document.getElementsByClassName("in");
+    for (let x of arr) x.value = '';
+
+    alert(`name, you're logged in!`);
+}
+
+
+function log_php(uname, pass)
+{
+    $.ajax(
+        {
+            url: 'login.php',
+            type: 'POST',
+            data: {username: uname, password: pass},
+            success: function(result)
+            {
+                console.log(result);
+                if (result === "Login!")
+                {
+                    start(uname);
+                    user = uname;
+                }
+            },
+            error: function()
+            {
+                console.log('login error!');
+            }
+        }
+    )
+}
+
+
+function reg_php(uname, pass, pass_again)
+{
+    if (pass !== pass_again)
+    {
+        alert("different password inputs!");
+        return;
+    }
+
+    $.ajax(
+        {
+            url: 'register.php',
+            type: 'POST',
+            data: {username: uname, password: pass},
+            success : function (result)
+            {
+                console.log(result);
+                if (result === 'Success!') {alert(`${uname}, you're registered!`)}
+                else alert(`Wrong input`);
+            },
+            error: function()
+            {
+                console.log('error');
+            }
+        }
+    )
+}
+
+</script>
 </html>
