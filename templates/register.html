@@ -1,32 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <form method="POST" action="">
+    {% csrf_token %}
     <div class="div" id="back">
             <div class="login">
                     <div class="circle"></div>
                     <h2 id="sign-up"> SIGN UP</h2>
                 <label class="input">
                     Username
-                    <input class="in" type="text" name="username">
+                    {{ form.username }}
+                </label>
+
+                <label class="input">
+                    First Name
+                    {{ form.first_name }}
+                </label>
+
+                <label class="input">
+                    Last Name
+                    {{ form.last_name }}
                 </label>
 
                 <label class="input">
                     Email
-                    <input id="backEmail" class="in" type="text" name="email">
+                    {{ form.email }}
                 </label>
 
                 <label class="input">
                     Password
-                    <input id="backPassword" class="in" type="password" name="password1">
+                    {{ form.password1 }}
                 </label>
 
                 <label class="input">
                     Confirm Password
-                    <input id="backConfirm" class="in" type="password" name="password2">
+                    {{ form.password2 }}
                 </label>
 
                 <div id="for-btn" class="for-btn">
-                    <button class="btn"> SUBMIT </button>
+                    <input class="btn" type="submit" value="SUBMIT">
                 </div>
 
                 <div class="back-txt for-txt">
@@ -43,4 +55,9 @@
                 <div class="decoration" onclick="Reset()"> Login here </div>
             </div>
         </div>
+
+
+
+
+    </form>
 {% endblock %}

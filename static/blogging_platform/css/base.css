@@ -10,11 +10,18 @@ html, body
     justify-content: center;
     background-color: #a3e8fd;
     height: 100%;
-    position: relative;
+    /*position: relative;*/
+}
+
+form
+{
+    display: flex;
+    justify-content: center;
 }
 
 #front
 {
+    /*border: 2px solid black;*/
     width: 25%;
     height: 55%;
     /*border: 10px solid red;*/
@@ -22,6 +29,7 @@ html, body
 
 .login
 {
+    margin-right: 150px;
     border: 2px solid #0b647f;
     width: 100%;
     height: 100%;
@@ -56,7 +64,7 @@ html, body
     margin-top: 25px;
 }
 
-.in
+.in, #id_username, #id_email, #id_password1, #id_password2, #id_first_name, #id_last_name
 {
     border-radius: 10px;
     width: 90%;
