@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Profile</title>
+{% extends 'main.html' %}
+
+{% block content %}
     {% load static %}
-    <link href="{% static 'accounts/css/main.css' %}" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar">
-  <img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="logo" alt="">
-  <form class="search-box">
-    <input type="text" placeholder="search" name="search-query" id="search-input">
-    <button class="search-btn" type="submit"><img src="{% static 'accounts/img/search.png' %}" class="search-icon" alt=""></button>
-  </form>
-  <div class="nav-links">
-    <a href="#" class="nav-links"><img src="{% static 'accounts/img/home-fill.png' %}" class="nav-icon" alt=""></a>
-    <a href="#" class="nav-links"><img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="nav-icon user-profile" alt=""></a>
-  </div>
-</nav>
-<div class="grid-container">
+    <div class="grid-container">
   <div class="grid-img">
     <img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}">
   </div>
@@ -72,5 +56,4 @@
     </div>
   </div>
 </section >
-</body>
-</html>
+{% endblock %}

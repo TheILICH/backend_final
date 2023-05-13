@@ -15,5 +15,4 @@ class Post(models.Model):
     text = models.TextField()
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    like = models.ManyToManyField(Profile)
-    comment = models.ManyToManyField(Profile)
+

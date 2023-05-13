@@ -11,7 +11,7 @@ def home(request):
     content = {
         'user': user,
     }
-    return render(request, 'main page.html', content)
+    return render(request, 'home_page.html', content)
 
 
 def login_view(request):
@@ -61,3 +61,6 @@ def logout_page(request):
 
 def user_profile(request):
     return render(request, 'user_profile.html')
+
+
+
