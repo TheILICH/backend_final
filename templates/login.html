@@ -16,18 +16,19 @@
                 <h2 id="login-h2"> LOGIN </h2>
                 <label class="input">
                     Username
-                    <input id="frontEmail" class="in" type="text" name="username">
+                    {{ form.username }}
                 </label>
                 <div id="password">
                     <label class="input">
                         Password
-                        <input id="frontPassword" class="in" type="password" name="password">
+                        {{ form.password }}
                     </label>
                 </div>
 
-                <div class="for-btn">
-                    <button class="btn"> SUBMIT </button>
+                <div id="for-btn" class="for-btn">
+                    <input class="btn" type="submit" value="LOGIN">
                 </div>
+
             </div>
             <div class="for-txt">
                 Not have an account?

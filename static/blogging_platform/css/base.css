@@ -64,7 +64,7 @@ form
     margin-top: 25px;
 }
 
-.in, #id_username, #id_email, #id_password1, #id_password2, #id_first_name, #id_last_name
+.in, #id_username, #id_email, #id_password1, #id_password2, #id_first_name, #id_last_name, #id_password
 {
     border-radius: 10px;
     width: 90%;
