@@ -1,17 +1,38 @@
 from django.contrib import messages
-from .forms import MyUserCreationForm
+from .forms import MyUserCreationForm, MyAuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 def home(request):
-    return render(request, 'main page.html')
+    user = request.user
+
+    content = {
+        'user': user,
+    }
+    return render(request, 'main page.html', content)
 
 
 def login_view(request):
 
-    return render(request, 'login.html')
+    form = MyAuthenticationForm()
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+
+    content = {
+        'form': form,
+    }
+
+    return render(request, 'login.html', content)
 
 
 def register(request):
