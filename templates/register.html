@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
     <form method="POST" action="">
     {% csrf_token %}
     <div class="div" id="back">
             <div class="login">
                     <div class="circle"></div>
                     <h2 id="sign-up"> SIGN UP</h2>
+                    {{ form.errors }}
                 <label class="input">
                     Username
                     {{ form.username }}

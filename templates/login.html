@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     <div class="div" id="front">
             <div class="login">
                 <div class="circle"></div>
+                {% for m in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{ m }}
+                    </div>
+                {% endfor %}
                 <h2 id="login-h2"> LOGIN </h2>
                 <label class="input">
                     Username
