@@ -7,12 +7,12 @@ class Profile(models.Model):
 
 
 class Follow(models.Model):
-    followed = models.ForeignKey(Profile, related_name='followed', on_delete=models.CASCADE)
-    follower = models.ForeignKey(Profile, related_name='follower', on_delete=models.CASCADE)
+    followed = models.ForeignKey(User, related_name='followed', on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, related_name='follower', on_delete=models.CASCADE)
 
 
 class Post(models.Model):
     text = models.TextField()
-    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 

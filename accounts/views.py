@@ -1,8 +1,9 @@
 from django.contrib import messages
-from .forms import MyUserCreationForm, MyAuthenticationForm
+from .forms import MyUserCreationForm, MyAuthenticationForm, PostForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -15,6 +16,10 @@ def home(request):
 
 
 def login_view(request):
+
+    a = User.objects.all()
+    for u in a:
+        print(u.username)
 
     form = MyAuthenticationForm()
 
@@ -61,6 +66,17 @@ def logout_page(request):
 
 def user_profile(request):
     return render(request, 'user_profile.html')
+
+
+def post(request, username):
+
+    form = PostForm()
+
+    content = {
+        'form': form,
+    }
+
+    return render(request, 'post.html', content)
 
 
 
