@@ -15,6 +15,7 @@ let reset =
 
 const Rotate = () =>
 {
+    console.log('ASDOFIUPOQRE')
     Object.assign(front.style, rotate);
     Object.assign(back.style, reset);
 }

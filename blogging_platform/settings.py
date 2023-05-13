@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'profiles',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +123,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 

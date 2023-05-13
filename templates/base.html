@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Lab Forms</title>
-    <link rel="stylesheet" href="style.css">
-    <script type = "text/javascript"
-            src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script type = "text/javascript" src = "https://www.tutorialspoint.com/jquery/jquery-3.6.0.js">
-    </script>
+    {% load static %}
+    <script type="javascript" src="{% static 'blogging_platform/js/base.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'blogging_platform/css/base.css' %}">
 </head>
 <body>
     <div class="container">
@@ -28,7 +24,7 @@
                 </div>
 
                 <div class="for-btn">
-                    <button class="btn" onclick="log_php(frontEmail.value, frontPassword.value)"> SUBMIT </button>
+                    <button class="btn"> SUBMIT </button>
                 </div>
             </div>
             <div class="for-txt">
@@ -69,7 +65,7 @@
                 </label>
 
                 <div id="for-btn" class="for-btn">
-                    <button class="btn" onclick="reg_php(backEmail.value, backPassword.value, backConfirm.value)"> SUBMIT </button>
+                    <button class="btn"> SUBMIT </button>
                 </div>
 
                 <div class="back-txt for-txt">
@@ -89,6 +85,5 @@
 
     </div>
 </body>
-<script>
-</script>
+    <script type="javascript" src="{% static 'blogging_platform/js/base.js' %}"></script>
 </html>
