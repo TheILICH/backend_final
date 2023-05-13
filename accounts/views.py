@@ -1,6 +1,7 @@
 from django.contrib import messages
 from .forms import MyUserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
@@ -8,7 +9,8 @@ def home(request):
     return render(request, 'main page.html')
 
 
-def login(request):
+def login_view(request):
+
     return render(request, 'login.html')
 
 
