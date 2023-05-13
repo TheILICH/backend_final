@@ -1,0 +1,153 @@
+html, body
+{
+    height: 100%;
+    margin: 0;
+}
+
+.container
+{
+    display: flex;
+    justify-content: center;
+    background-color: #a3e8fd;
+    height: 100%;
+    position: relative;
+}
+
+#front
+{
+    width: 25%;
+    height: 55%;
+    /*border: 10px solid red;*/
+}
+
+.login
+{
+    border: 2px solid #0b647f;
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(281deg, rgba(0,0,0,1) 0%, rgba(45,188,225,1) 25%, rgba(255,255,255,1) 94%);
+}
+
+#front, #back
+{
+    transition: all .8s ease;
+    backface-visibility: hidden;
+    position: absolute;
+}
+
+#back
+{
+    transform: rotateY(-180deg);
+    /*border: 10px solid blue;*/
+}
+
+#login-h2, #sign-up
+{
+    text-align: center;
+    font-weight: bold;
+}
+
+.input
+{
+    display: block;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 25px;
+}
+
+.in
+{
+    border-radius: 10px;
+    width: 90%;
+    height: 20px;
+}
+
+#password
+{
+    margin-top: 30px;
+}
+
+.circle
+{
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 0 0 50% 50%;
+    background: rgb(2,0,36);
+    background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(181,23,151,1) 29%, rgba(0,212,255,1) 63%);
+}
+
+.for-btn
+{
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 10px solid red;*/
+}
+
+.btn
+{
+    height: 30%;
+    width: 90%;
+    font-weight: bold;
+    font-size: 15px;
+    background: rgb(2,0,36);
+    background: linear-gradient(40deg, rgba(2,0,36,1) 0%, rgba(181,23,151,1) 29%, rgba(0,212,255,1) 63%);
+}
+
+.btn:hover
+{
+    opacity: .75;
+}
+
+.for-txt
+{
+    font-size: 15px;
+    /*display: flex;*/
+    text-align: center;
+}
+
+.decoration
+{
+    text-decoration: underline;
+    color: green;
+    margin: 0 7px 0 7px;
+}
+
+.decoration:hover
+{
+    opacity: .75;
+    cursor: pointer;
+}
+
+#back
+{
+    width: 25%;
+    height: 85%;
+}
+
+#for-btn
+{
+    height: 15%;
+}
+
+.back-txt
+{
+    font-weight: bold;
+}
+
+#line
+{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+
+
+
+
