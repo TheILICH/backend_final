@@ -54,5 +54,10 @@ def register(request):
     return render(request, 'register.html', content)
 
 
+def logout_page(request):
+    logout(request)
+    return redirect('login')
+
+
 def user_profile(request):
     return render(request, 'user_profile.html')
