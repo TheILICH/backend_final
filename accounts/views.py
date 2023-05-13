@@ -27,6 +27,8 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect('home')
+        else:
+            messages.info(request, 'Email or Username is incorrect!')
 
     content = {
         'form': form,
@@ -50,3 +52,7 @@ def register(request):
     }
 
     return render(request, 'register.html', content)
+
+
+def user_profile(request):
+    return render(request, 'user_profile.html')
