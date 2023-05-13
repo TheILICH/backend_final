@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="div" id="front">
+        {% block content %}
+            <div class="div" id="front">
             <div class="login">
                 <div class="circle"></div>
                 <h2 id="login-h2"> LOGIN </h2>
@@ -30,57 +31,10 @@
                 Not have an account?
                 <div class="decoration" onclick="Rotate()"> Sign up here </div>
             </div>
-
         </div>
+        {% endblock %}
 
 
-        <div class="div" id="back">
-            <div class="login">
-                    <div class="circle"></div>
-                    <h2 id="sign-up"> SIGN UP</h2>
-                <label class="input">
-                    Name
-                    <input id="backName" class="in" type="text">
-                </label>
-
-                <label class="input">
-                    Surname
-                    <input id="backSurname" class="in" type="text">
-                </label>
-
-                <label class="input">
-                    Email
-                    <input id="backEmail" class="in" type="text">
-                </label>
-
-                <label class="input">
-                    Password
-                    <input id="backPassword" class="in" type="password">
-                </label>
-
-                <label class="input">
-                    Confirm Password
-                    <input id="backConfirm" class="in" type="password">
-                </label>
-
-                <div id="for-btn" class="for-btn">
-                    <button class="btn"> SUBMIT </button>
-                </div>
-
-                <div class="back-txt for-txt">
-                    By clicking the Sign-Up button, you agree to our
-                    <div id="line">
-                        <div class="decoration">Terms and Condition</div> and <div class="decoration">Policy Privacy</div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="for-txt">
-                Already have an account?
-                <div class="decoration" onclick="Reset()"> Login here </div>
-            </div>
-        </div>
 
     </div>
 </body>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="div" id="front">
+            <div class="login">
+                <div class="circle"></div>
+                <h2 id="login-h2"> LOGIN </h2>
+                <label class="input">
+                    Username
+                    <input id="frontEmail" class="in" type="text" name="username">
+                </label>
+                <div id="password">
+                    <label class="input">
+                        Password
+                        <input id="frontPassword" class="in" type="password" name="password">
+                    </label>
+                </div>
+
+                <div class="for-btn">
+                    <button class="btn"> SUBMIT </button>
+                </div>
+            </div>
+            <div class="for-txt">
+                Not have an account?
+                <div class="decoration" onclick="Rotate()"> Sign up here </div>
+            </div>
+        </div>
+{% endblock %}
