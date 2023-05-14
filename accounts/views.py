@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     user = request.user
 
+    if not user.is_authenticated:
+        return redirect('login')
+
     content = {
         'user': user,
     }
