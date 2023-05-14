@@ -45,7 +45,8 @@ def register(request):
     if request.method == 'POST':
         form = MyUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user)
             messages.success(request, 'You have successfully created your account! Now please log into your account!')
             return redirect('login')
 
