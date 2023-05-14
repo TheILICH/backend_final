@@ -15,7 +15,7 @@
     </form>
     <div class="nav-links">
         <a href="#" class="nav-links"><img src="{% static 'accounts/img/home-fill.png' %}" class="nav-icon" alt=""></a>
-        <a href="profile/" class="nav-links"><img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="nav-icon user-profile" alt=""></a>
+        <a href="{% url 'profile' username=user.username %}" class="nav-links"><img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="nav-icon user-profile" alt=""></a>
     </div>
 </nav>
 

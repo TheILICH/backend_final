@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from .models import Profile, Follow, Post
 
 
 def home(request):
@@ -12,6 +13,7 @@ def home(request):
     content = {
         'user': user,
     }
+
     return render(request, 'home_page.html', content)
 
 
@@ -59,17 +61,46 @@ def logout_page(request):
     return redirect('login')
 
 
-def user_profile(request):
-    return render(request, 'user_profile.html')
+def user_profile(request, username):
+
+    print(f'username = {username}')
+    # user = User.objects.get(username=username)
+    #
+    # profile = Profile.objects.get(user=user)
+
+    content = {
+        # 'profile': profile,
+    }
+
+    return render(request, 'user_profile.html', content)
 
 
-def post(request, username, idx=-1):
+def post_view(request, username, idx=-1):
 
-    form = PostForm()
+    if username != request.user.username:
+        messages.info(request, f"You should be logged in as {username}!")
+        return redirect('login')
 
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        form.save()
+    user = request.user
+    post = None
+
+    if idx > -1:
+        post = Post.objects.get(id=idx)
+
+    if request.method != 'POST':
+        content = {
+            'form': PostForm(instance=post)
+        }
+
+        return render(request, 'post.html', content)
+
+    form = PostForm(request.POST, instance=post)
+    if form.is_valid():
+        new_post = form.save(commit=False)
+        new_post.creator = user
+        new_post.save()
+
+        return redirect('edit', username=user.username, idx=new_post.id)
 
     content = {
         'form': form,
