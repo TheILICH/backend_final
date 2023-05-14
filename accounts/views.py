@@ -69,7 +69,7 @@ def logout_page(request):
 def user_profile(request, username):
     exist = 0
     for u in User.objects.all():
-        if u.usernmame == username:
+        if u.username == username:
             exist = 1
             break
 
@@ -135,7 +135,7 @@ def edit_profile(request, username):
 
     form = ProfileForm(instance=profile)
 
-    if request.method != 'POST' and form.is_valid():
+    if request.method != 'POST':
         content = {
             'form': form,
         }
@@ -143,8 +143,9 @@ def edit_profile(request, username):
         return render(request, 'edit_profile.html', content)
 
     form = ProfileForm(request.POST, request.FILES, instance=profile)
-    new_profile = form.save(commit=False)
-    new_profile.save()
+    if form.is_valid():
+        new_profile = form.save(commit=False)
+        new_profile.save()
 
     content = {
         'form': form,
