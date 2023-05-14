@@ -24,10 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login_view, name='login'),
     path('register/', register, name='register'),
-    path('profiles/<str:username>', user_profile, name='profile'),
+    path('profiles/<str:username>/', user_profile, name='profile'),
     path('logout/', logout_page, name='logout'),
-    path('profiles/<str:username>/<int:idx>', post_view, name='edit'),
-    path('profiles/<str:username>/new', post_view, name='new_post'),
+    path('profiles/<str:username>/<int:idx>/', post_view, name='edit'),
+    path('profiles/<str:username>/new/', post_view, name='new_post'),
+    path('profiles/<str:username>/edit/', )
 ]
 
 if settings.DEBUG:

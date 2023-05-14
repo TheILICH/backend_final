@@ -76,6 +76,7 @@ def user_profile(request, username):
     content = {
         'posts': posts,
         'profile': profile,
+        'publications': len(posts),
     }
 
     return render(request, 'user_profile.html', content)
@@ -113,6 +114,15 @@ def post_view(request, username, idx=-1):
     }
 
     return render(request, 'post.html', content)
+
+
+def edit_profile(request, username):
+    user = User.objects.get(username=username)
+
+    if user != request.user:
+        messages.info(request, f"You should be logged in as {username}!")
+        return redirect('login')
+
 
 
 
