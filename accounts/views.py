@@ -64,12 +64,13 @@ def logout_page(request):
 def user_profile(request, username):
 
     print(f'username = {username}')
-    # user = User.objects.get(username=username)
-    #
-    # profile = Profile.objects.get(user=user)
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    post = Post.objects.get(id=6)
 
     content = {
-        # 'profile': profile,
+        'post': post,
+        'profile': profile,
     }
 
     return render(request, 'user_profile.html', content)
@@ -94,7 +95,7 @@ def post_view(request, username, idx=-1):
 
         return render(request, 'post.html', content)
 
-    form = PostForm(request.POST, instance=post)
+    form = PostForm(request.POST, request.FILES, instance=post)
     if form.is_valid():
         new_post = form.save(commit=False)
         new_post.creator = user
