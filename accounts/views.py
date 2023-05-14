@@ -16,11 +16,6 @@ def home(request):
 
 
 def login_view(request):
-
-    a = User.objects.all()
-    for u in a:
-        print(u.username)
-
     form = MyAuthenticationForm()
 
     if request.method == 'POST':
@@ -68,9 +63,13 @@ def user_profile(request):
     return render(request, 'user_profile.html')
 
 
-def post(request, username):
+def post(request, username, idx=-1):
 
     form = PostForm()
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        form.save()
 
     content = {
         'form': form,

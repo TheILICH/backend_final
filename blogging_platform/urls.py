@@ -24,6 +24,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('profile/', user_profile, name='profile'),
     path('logout/', logout_page, name='logout'),
-    path('<str:username>/', post, name='edit'),
-    path('<str:usernmae>/new', post, name='new_post'),
+    path('<str:username>/<int:idx>', post, name='edit'),
+    path('<str:username>/new', post, name='new_post'),
 ]
