@@ -1,5 +1,5 @@
 from django.contrib import messages
-from .forms import MyUserCreationForm, MyAuthenticationForm, PostForm
+from .forms import MyUserCreationForm, MyAuthenticationForm, PostForm, ProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -67,6 +67,16 @@ def logout_page(request):
 
 
 def user_profile(request, username):
+    exist = 0
+    for u in User.objects.all():
+        if u.usernmame == username:
+            exist = 1
+            break
+
+    if exist == 0:
+        messages.info(
+            f'There is not such profile with username = {username}. Instead you can create new profile with such username!')
+        return redirect('register')
 
     print(f'username = {username}')
     user = User.objects.get(username=username)
@@ -83,7 +93,6 @@ def user_profile(request, username):
 
 
 def post_view(request, username, idx=-1):
-
     if username != request.user.username:
         messages.info(request, f"You should be logged in as {username}!")
         return redirect('login')
@@ -118,11 +127,27 @@ def post_view(request, username, idx=-1):
 
 def edit_profile(request, username):
     user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
 
     if user != request.user:
         messages.info(request, f"You should be logged in as {username}!")
         return redirect('login')
 
+    form = ProfileForm(instance=profile)
 
+    if request.method != 'POST' and form.is_valid():
+        content = {
+            'form': form,
+        }
 
+        return render(request, 'edit_profile.html', content)
 
+    form = ProfileForm(request.POST, request.FILES, instance=profile)
+    new_profile = form.save(commit=False)
+    new_profile.save()
+
+    content = {
+        'form': form,
+    }
+
+    return render(request, 'edit_profile.html', content)

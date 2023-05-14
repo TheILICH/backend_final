@@ -25,4 +25,4 @@ class PostForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['img', ]
+        fields = ['img', 'status']
