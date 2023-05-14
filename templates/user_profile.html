@@ -27,14 +27,19 @@
 </div>
 <section class="main">
   <div class="post-container">
-    <div class="post">
+        {% for p in posts %}
+                <div class="post">
       <div class="post-header">
         <img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="user-icon" alt="">
         <p class="username">@aki_never_used</p>
       </div>
       <div class="post-feed">
         <div class="post-img-container">
-          <img src="{{ post.img.url }}" alt="">
+            {% if p.img %}
+              <img src="{{ p.img.url }}" alt="">
+            {% else %}
+              <img src="{% static 'accounts/img/def.jpg' %}">
+            {% endif %}
         </div>
       </div>
       <div class="post-detail">
@@ -54,6 +59,7 @@
         <span class="comment-count">300 comments</span>
       </div>
     </div>
+        {% endfor %}
   </div>
 </section >
 {% endblock %}

@@ -71,10 +71,10 @@ def user_profile(request, username):
     print(f'username = {username}')
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
-    post = Post.objects.get(id=6)
+    posts = Post.objects.filter(creator=user)
 
     content = {
-        'post': post,
+        'posts': posts,
         'profile': profile,
     }
 
