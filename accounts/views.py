@@ -1,5 +1,5 @@
 from django.contrib import messages
-from .forms import MyUserCreationForm, MyAuthenticationForm, PostForm, ProfileForm
+from .forms import MyUserCreationForm, MyAuthenticationForm, PostForm, ProfileForm, SearchForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -15,6 +15,14 @@ def home(request):
     if not user.is_authenticated:
         return redirect('login')
 
+    print(f'METHOD = {request.method}')
+
+    form = SearchForm(request.GET)
+    res = []
+    if form.is_valid() and form.cleaned_data['search_text']:
+        # print(f'SEARCH_TEXT = {request.GET.get("search_text")}')
+        res = Profile.objects.filter(user__username__icontains=request.GET['search_text'])
+
     fellas = []
     for f in Follow.objects.all():
         if f.follower == user:
@@ -29,10 +37,11 @@ def home(request):
 
     shuffle(all)
 
-
     content = {
         'user': user,
         'all': all,
+        'res': res,
+        'form': form,
     }
 
     return render(request, 'home_page.html', content)
@@ -92,9 +101,15 @@ def user_profile(request, username):
             break
 
     if exist == 0:
-        messages.info(
+        messages.info(request,
             f'There is not such profile with username = {username}. Instead you can create new profile with such username!')
         return redirect('register')
+
+    print(f'METHOD = {request.method}')
+    #
+    # if request.method == 'GET':
+    #     print(f'SEARCH_TEXT = {request.GET["search_text"]}')
+    #     return
 
     print(f'username = {username}')
     user = User.objects.get(username=username)
@@ -113,6 +128,7 @@ def user_profile(request, username):
         'profile': profile,
         'publications': len(posts),
         'button_text': text,
+        'ok': True,
         'global_profile': global_profile,
     }
 
@@ -174,6 +190,7 @@ def edit_profile(request, username):
     form = ProfileForm(instance=profile)
     img_url = profile.img.url
 
+
     if request.method != 'POST':
         content = {
             'form': form,
@@ -215,9 +232,5 @@ def following(request, username, idx):
 
     return redirect('profile', username=followed.username)
 
-
-def search(request):
-
-    return render(request, 'search.html')
 
 

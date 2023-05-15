@@ -1,5 +1,10 @@
 {% extends 'main.html' %}
 
+{% block search %}
+        <input type="text" placeholder="search" name="search_text" id="search-input">
+        <input type="submit">
+{% endblock %}
+
 {% block content %}
     {% load static %}
     <section class="main">
@@ -22,8 +27,8 @@
                     <img src="{% static 'accounts/img/comment-nofill.png' %}" class="comment-btn" alt="">
                 </div>
                 <span class="likes">2.7k likes</span>
-                <p class="username">@aki_never_used</p>
-                <p class="post-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa incidunt obcaecati esse illo voluptates libero debitis nisi. Id tempora vel illum vitae temporibus commodi non cupiditate atque voluptas. Ipsam.</p>
+                <p class="username">{{ u.user.username }}</p>
+                <p class="post-des">{{ p.text }}</p>
 
                 <div class="comment-box">
                     <input type="text" id="comment-input" placeholder="Add a comment">
@@ -35,5 +40,30 @@
         </div>
         {% endfor %}
     </div>
+
+
+
+    <div class="recommendations">
+        {% if res %}
+            <div class="rec-head">
+            May be interesting:
+        </div>
+        {% endif %}
+        <div class="rec-body">
+            <div class="rec-acc">
+
+                {% for p in res %}
+                    <div class="post-header">
+                    <img src="{{ p.img.url }}" class="user-icon" alt="">
+                    <a href="{% url 'profile' username=p.user.username %}" class="username">{{ p.user.username }}</a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+
 </section >
 {% endblock %}

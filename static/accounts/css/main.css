@@ -470,3 +470,29 @@ body{
 {
     display: none;
 }
+
+
+
+.search-body{
+    margin-top: 100px;
+    margin-left: 20vw;
+}
+.user-icon-search{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.search-body .post-header a{
+    font-size: 30px;
+}
+
+.recommendations{
+    /*border: 1px solid #999;*/
+}
+.rec-head{
+    border-bottom: 1px solid #999;
+}
+.rec-acc{
+    border: 2px solid black;
+    background: white;
+}

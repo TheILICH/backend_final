@@ -8,10 +8,10 @@
 </head>
 <body>
 <nav class="navbar">
-    <img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="logo" alt="">
-    <form class="search-box">
-        <input type="text" placeholder="search" name="search-query" id="search-input">
-        <button class="search-btn" type="submit"><img src="{% static 'accounts/img/search.png' %}" class="search-icon" alt=""></button>
+    <img src="{% static 'accounts/img/logo.jpg' %}" class="logo" alt="">
+    <form class="search-box" method="GET" action="">
+        {% block search %}
+        {% endblock %}
     </form>
     <div class="nav-links">
         <a href="{% url 'home' %}" class="nav-links"><img src="{% static 'accounts/img/home-fill.png' %}" class="nav-icon" alt=""></a>

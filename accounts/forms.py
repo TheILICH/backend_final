@@ -36,3 +36,8 @@ class ProfileForm(forms.ModelForm):
         #         attrs={'class': 'custom-file-input', 'accept': 'image/*', 'multiple': False, 'id': 'imagefile',
         #                'data-clearable': False}),
         # }
+
+
+class SearchForm(forms.Form):
+    search_text = forms.CharField(max_length=100)
+
