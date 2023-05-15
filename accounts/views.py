@@ -225,7 +225,7 @@ def edit_profile(request, username):
     if request.method != 'POST':
         content = {
             'form': form,
-            'img_url': img_url,
+            'p': profile,
         }
 
         return render(request, 'edit_profile.html', content)

@@ -19,18 +19,21 @@
 {% block content %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'accounts/css/main.css' %}">
-    <div class="hero">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="hero">
       <div class="card">
-        <h1>Username</h1>
-        <p>@Username</p>
+        <h1>@{{ p.user.username }}</h1>
         <img src="{{ p.img.url }}" id="profile" alt="">
         <textarea class="status" rows="6">{{ p.status }}</textarea>
-        <label for="input-file" class="edit-label" id="file">update image</label>
-        <input type="file" accept="image/*" id="input-file">
+{#        <label for="input-file" class="edit-label" id="file">update image</label>#}
+{#        <input type="file" accept="image/*" id="input-file">#}
+          {{ form.img }}
         <button class="submit-btn" style="margin-top: -5px">Submit</button>
 
       </div>
     </div>
+    </form>
 
     <script>
       let profile = document.getElementById("profile");
