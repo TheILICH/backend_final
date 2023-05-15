@@ -146,7 +146,7 @@ def user_profile(request, username):
     print(f'username = {username}')
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
-    posts = Post.objects.filter(creator=user)
+    posts = Post.objects.filter(creator=user) or []
 
     global_profile = Profile.objects.get(user=request.user)
 

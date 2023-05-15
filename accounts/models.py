@@ -20,7 +20,7 @@ class Post(models.Model):
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    img = models.ImageField(null=True, blank=True, upload_to='images/')
+    img = models.ImageField(null=True, blank=True, upload_to='images/', default='images/def.jpb')
 
     def __str__(self):
         return f'text = {self.text} was created by {self.creator}'

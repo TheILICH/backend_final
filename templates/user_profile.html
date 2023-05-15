@@ -39,8 +39,10 @@
   <div class="grid-name">
       {% if profile.status %}
           {{ profile.status }}
-    <a style="padding-left: 50%; transform: translateX(-50%);" href="{% url 'new_post' username=global_profile.user.username %}">Create Post</a>
       {% endif %}
+        {% if global_profile == profile %}
+            <a style="padding-left: 50%; transform: translateX(-50%);" href="{% url 'new_post' username=global_profile.user.username %}">Create Post</a>
+        {% endif %}
   </div>
 
 </div>
