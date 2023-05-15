@@ -165,4 +165,4 @@ def edit_profile(request, username):
         'form': form,
     }
 
-    return render(request, 'edit_profile.html', content)
+    return redirect('profile', username=username)
