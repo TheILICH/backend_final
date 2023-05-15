@@ -434,3 +434,8 @@ body{
     text-align: center;
     transform: translateY(50%);
 }
+
+.grid-btn img{
+    width: 20px;
+    margin-right: 20px;
+}
