@@ -67,6 +67,7 @@ def logout_page(request):
 
 
 def user_profile(request, username):
+    print(f'USERNAME = {username}')
     exist = 0
     for u in User.objects.all():
         if u.username == username:
@@ -128,6 +129,17 @@ def post_view(request, username, idx=-1):
 
 
 def edit_profile(request, username):
+    exist = 0
+    for u in User.objects.all():
+        if u.username == username:
+            exist = 1
+            break
+
+    if exist == 0:
+        messages.info(request,
+            f'There is not such profile with username = {username}. Instead you can create new profile with such username!')
+        return redirect('register')
+
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
 

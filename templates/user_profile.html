@@ -1,11 +1,13 @@
 {% extends 'main.html' %}
 
 {% block brand %}
-            {% if global_profile.img %}
-                <a href="{% url 'profile' username=global_profile.user.username %}" class="nav-links"><img src="{{ global_profile.img.url }}" class="nav-icon user-profile" alt=""></a>
-            {% else %}
-                <img src="{% static 'accounts/img/def.jpg' %}">
-            {% endif %}
+{#            {% if global_profile.img %}#}
+{#            {% else %}#}
+{#                <img src="{% static 'accounts/img/def.jpg' %}">#}
+{#            {% endif %}#}
+
+            <a href="{% url 'profile' username=global_profile.user.username %}" class="nav-links"><img src="{{ global_profile.img.url }}" class="nav-icon user-profile" alt=""></a>
+
 {% endblock %}
 
 {% block content %}
