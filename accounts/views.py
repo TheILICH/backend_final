@@ -11,13 +11,13 @@ from random import shuffle
 
 def home(request):
     user = request.user
-    global_profile = Profile.objects.get(user=user)
 
     # print(f'P.USERNAME = {p.user.username}')
 
     if not user.is_authenticated:
         return redirect('login')
 
+    global_profile = Profile.objects.get(user=user)
     print(f'METHOD = {request.method}')
 
     form = SearchForm(request.GET)

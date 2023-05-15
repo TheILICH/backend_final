@@ -538,10 +538,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
 }
-#input-file{
-    display: none;
-}
-.status{
+#id_status{
     width: 80%;
     resize: none;
 }

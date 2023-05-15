@@ -28,9 +28,6 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['img', 'status']
-        labels = {
-            'img': '',
-        }
         # widgets = {
         #     'image': ClearableFileInput(
         #         attrs={'class': 'custom-file-input', 'accept': 'image/*', 'multiple': False, 'id': 'imagefile',
