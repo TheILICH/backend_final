@@ -11,6 +11,9 @@ from random import shuffle
 
 def home(request):
     user = request.user
+    global_profile = Profile.objects.get(user=user)
+
+    # print(f'P.USERNAME = {p.user.username}')
 
     if not user.is_authenticated:
         return redirect('login')
@@ -70,6 +73,7 @@ def home(request):
         'res': res,
         'form': form,
         'rand': rand,
+        'global_profile': global_profile,
     }
 
     return render(request, 'home_page.html', content)
@@ -218,14 +222,11 @@ def edit_profile(request, username):
     form = ProfileForm(instance=profile)
     img_url = profile.img.url
 
-
     if request.method != 'POST':
         content = {
             'form': form,
             'img_url': img_url,
         }
-
-
 
         return render(request, 'edit_profile.html', content)
 
@@ -236,6 +237,7 @@ def edit_profile(request, username):
 
     content = {
         'form': form,
+        'p': Profile.objects.get(user=request.user),
     }
 
     # print(f'url = {form.img.url}')

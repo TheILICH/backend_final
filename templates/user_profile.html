@@ -47,7 +47,7 @@
         {% for p in posts %}
                 <div class="post">
       <div class="post-header">
-        <img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}" class="user-icon" alt="">
+        <img src="{{ profile.img.url }}" class="user-icon" alt="">
         <p class="username">{{ p.creator.username }}</p>
       </div>
       <div class="post-feed">

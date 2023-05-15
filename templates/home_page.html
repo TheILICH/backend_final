@@ -1,5 +1,9 @@
 {% extends 'main.html' %}
 
+{% block brand %}
+    <a href="{% url 'profile' username=global_profile.user.username %}" class="nav-links"><img src="{{ global_profile.img.url }}" class="nav-icon user-profile" alt=""></a>
+{% endblock %}
+
 {% block search %}
         <input type="text" placeholder="search" name="search_text" id="search-input">
         <input type="submit">
