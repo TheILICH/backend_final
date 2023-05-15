@@ -148,11 +148,15 @@ def edit_profile(request, username):
         return redirect('login')
 
     form = ProfileForm(instance=profile)
+    img_url = profile.img.url
 
     if request.method != 'POST':
         content = {
             'form': form,
+            'img_url': img_url,
         }
+
+
 
         return render(request, 'edit_profile.html', content)
 
@@ -165,4 +169,5 @@ def edit_profile(request, username):
         'form': form,
     }
 
+    # print(f'url = {form.img.url}')
     return redirect('profile', username=username)

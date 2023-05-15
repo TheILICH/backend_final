@@ -382,6 +382,7 @@ body{
     text-align: center;
     align-items: center;
     display: flex;
+    position: relative;
 }
 .grid-img img{
     width: 300px;
@@ -438,4 +439,33 @@ body{
 .grid-btn img{
     width: 20px;
     margin-right: 20px;
+}
+
+.upload-profile-icon{
+    position: absolute;
+    /*height: 1px;*/
+    width: 1px;
+    /*top: 50%;*/
+    /*transform: translateY(50%);*/
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px red solid;
+    cursor: pointer;
+    display: none;
+}
+
+
+.grid-img:hover .upload-profile-icon
+{
+    display: block;
+}
+
+#id_img
+{
+    display: none;
+}
+
+#img-clear_id
+{
+    display: none;
 }

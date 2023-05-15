@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ClearableFileInput
+
 from .models import Post, Profile, Follow
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -26,3 +28,11 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['img', 'status']
+        labels = {
+            'img': '',
+        }
+        # widgets = {
+        #     'image': ClearableFileInput(
+        #         attrs={'class': 'custom-file-input', 'accept': 'image/*', 'multiple': False, 'id': 'imagefile',
+        #                'data-clearable': False}),
+        # }
