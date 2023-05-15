@@ -85,11 +85,18 @@ def user_profile(request, username):
     posts = Post.objects.filter(creator=user)
 
     global_profile = Profile.objects.get(user=request.user)
+
+    text = 'Unfollow'
+    for f in Follow.objects.all():
+        if f.followed == profile.user and f.follower == global_profile.user:
+            text = 'Follow'
+
     content = {
-        'global_profile': global_profile,
         'posts': posts,
         'profile': profile,
         'publications': len(posts),
+        'button_text': text,
+        'global_profile': global_profile,
     }
 
     return render(request, 'user_profile.html', content)
@@ -171,3 +178,22 @@ def edit_profile(request, username):
 
     # print(f'url = {form.img.url}')
     return redirect('profile', username=username)
+
+
+def following(request, username, idx):
+
+    user = User.objects.get(username=username)
+    followed = User.objects.get(id=idx)
+
+    index = -1
+    for f in Follow.objects.all():
+        if f.followed == followed and f.follower == user:
+            index = f.id
+            break
+
+    if index == -1:
+        Follow.objects.create(followed=followed, follower=user)
+
+    else:
+        Follow.objects.get(id=index).delete()
+
