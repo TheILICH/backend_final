@@ -37,11 +37,39 @@ def home(request):
 
     shuffle(all)
 
+    rand = []
+    for p in Profile.objects.all():
+        if p.user == request.user:
+            continue
+        followers = Follow.objects.filter(followed=p.user)
+        ok = 1
+        for f in followers:
+            if f.follower == request.user:
+                ok = 0
+        if ok:
+            rand.append(p)
+
+
+    # for r in Follow.objects.all():
+    #     if r.follower == request.user:
+    #         continue
+    #     print('QPWOEIRUJWQEPORH')
+    #     p = Profile.objects.get(user=r.followed)
+    #     print(f'username = {p.user.username}')
+    #     rand.append(p)
+    #     if len(rand) > 10:
+    #         break
+
+    print(f'rand = {rand}')
+
+    shuffle(rand)
+
     content = {
         'user': user,
         'all': all,
         'res': res,
         'form': form,
+        'rand': rand,
     }
 
     return render(request, 'home_page.html', content)

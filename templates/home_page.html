@@ -46,18 +46,31 @@
     <div class="recommendations">
         {% if res %}
             <div class="rec-head">
-            May be interesting:
-        </div>
+                Your Search Results:
+            </div>
+        {% else %}
+            <div class="rec-head">
+                May be interesting:
+            </div>
         {% endif %}
         <div class="rec-body">
             <div class="rec-acc">
 
-                {% for p in res %}
-                    <div class="post-header">
-                    <img src="{{ p.img.url }}" class="user-icon" alt="">
-                    <a href="{% url 'profile' username=p.user.username %}" class="username">{{ p.user.username }}</a>
-                </div>
+                {% if res %}
+                    {% for p in res %}
+                        <div class="post-header">
+                            <img src="{{ p.img.url }}" class="user-icon" alt="">
+                            <a href="{% url 'profile' username=p.user.username %}" class="username">{{ p.user.username }}</a>
+                        </div>
                 {% endfor %}
+                {% else %}
+                    {% for r in rand %}
+                        <div class="post-header">
+                            <img src="{{ r.img.url }}" class="user-icon" alt="">
+                            <a href="{% url 'profile' username=r.user.username %}" class="username">{{ r.user.username }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
             </div>
         </div>
