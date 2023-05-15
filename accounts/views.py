@@ -83,7 +83,9 @@ def user_profile(request, username):
     profile = Profile.objects.get(user=user)
     posts = Post.objects.filter(creator=user)
 
+    global_profile = Profile.objects.get(user=request.user)
     content = {
+        'global_profile': global_profile,
         'posts': posts,
         'profile': profile,
         'publications': len(posts),

@@ -1,10 +1,22 @@
 {% extends 'main.html' %}
 
+{% block brand %}
+            {% if global_profile.img %}
+                <a href="{% url 'profile' username=global_profile.user.username %}" class="nav-links"><img src="{{ global_profile.img.url }}" class="nav-icon user-profile" alt=""></a>
+            {% else %}
+                <img src="{% static 'accounts/img/def.jpg' %}">
+            {% endif %}
+{% endblock %}
+
 {% block content %}
     {% load static %}
     <div class="grid-container">
   <div class="grid-img">
-    <img src="{% static 'accounts/img/Aisaka_Taiga.jpg' %}">
+    {% if profile.img %}
+              <img src="{{ profile.img.url }}" alt="">
+            {% else %}
+              <img src="{% static 'accounts/img/def.jpg' %}">
+            {% endif %}
   </div>
   <div class="grid-user">
       @{{ profile.user.username }}
