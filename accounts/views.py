@@ -86,10 +86,10 @@ def user_profile(request, username):
 
     global_profile = Profile.objects.get(user=request.user)
 
-    text = 'Unfollow'
+    text = 'Follow'
     for f in Follow.objects.all():
         if f.followed == profile.user and f.follower == global_profile.user:
-            text = 'Follow'
+            text = 'Unfollow'
 
     content = {
         'posts': posts,
@@ -193,7 +193,8 @@ def following(request, username, idx):
 
     if index == -1:
         Follow.objects.create(followed=followed, follower=user)
-
     else:
         Follow.objects.get(id=index).delete()
+
+    return redirect('profile', username=followed.username)
 
