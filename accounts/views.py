@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import Profile, Follow, Post
 from django.contrib.auth.decorators import login_required
+from random import shuffle
 
 
 def home(request):
@@ -14,8 +15,24 @@ def home(request):
     if not user.is_authenticated:
         return redirect('login')
 
+    fellas = []
+    for f in Follow.objects.all():
+        if f.follower == user:
+            fellas.append(f.followed)
+
+    all = []
+    for f in fellas:
+        profile = Profile.objects.get(user=f)
+        ps = Post.objects.filter(creator=f)
+        for p in ps:
+            all.append((profile, p))
+
+    shuffle(all)
+
+
     content = {
         'user': user,
+        'all': all,
     }
 
     return render(request, 'home_page.html', content)

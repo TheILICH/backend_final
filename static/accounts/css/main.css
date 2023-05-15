@@ -150,6 +150,7 @@ body{
 .post-header .username{
     font-size: .9rem;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .post-feed{
