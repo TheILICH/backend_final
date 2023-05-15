@@ -17,7 +17,7 @@ from . import settings
 from django.urls import path
 from django.contrib import admin
 from django.conf.urls.static import static
-from accounts.views import home, login_view, register, user_profile, logout_page, post_view, edit_profile, following
+from accounts.views import home, login_view, register, user_profile, logout_page, post_view, edit_profile, following, search
 
 urlpatterns = [
     path('', home, name='home'),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('profiles/<str:username>/new/', post_view, name='new_post'),
     path('profiles/<str:username>/edit/', edit_profile, name='edit_profile'),
     path('profiles/<str:username>/following/<int:idx>', following, name='following'),
+    path('profiles/search', search, name='search'),
 ]
 
 if settings.DEBUG:

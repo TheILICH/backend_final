@@ -215,3 +215,9 @@ def following(request, username, idx):
 
     return redirect('profile', username=followed.username)
 
+
+def search(request):
+
+    return render(request, 'search.html')
+
+
