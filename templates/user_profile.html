@@ -28,20 +28,25 @@
       {% endif %}
   </div>
   <div class="grid-pub">
-    {{ publications }}
+    {{ publications }} posts
   </div>
   <div class="grid-sub1">
-    10000 subscribers
+{{ sub }} Subscribers
   </div>
   <div class="grid-sub2">
-    10000 subscriptions
+{{ sub2 }} Subscriptions
   </div>
   <div class="grid-name">
       {% if profile.status %}
           {{ profile.status }}
+    <a style="padding-left: 50%; transform: translateX(-50%);" href="{% url 'new_post' username=global_profile.user.username %}">Create Post</a>
       {% endif %}
   </div>
+
 </div>
+
+
+
 <section class="main">
   <div class="post-container">
         {% for p in posts %}
@@ -49,7 +54,14 @@
       <div class="post-header">
         <img src="{{ profile.img.url }}" class="user-icon" alt="">
         <p class="username">{{ p.creator.username }}</p>
+          {% if global_profile == profile %}
+              <a href="{% url 'edit' username=global_profile.user.username idx=p.id %}" style="border-left:2px solid black;">Edit</a>
+            <img src="{% static 'accounts/img/pencil.png' %}" class="pencil" style="width: 20px;">
+          {% endif %}
       </div>
+
+
+
       <div class="post-feed">
         <div class="post-img-container">
             {% if p.img %}
@@ -66,7 +78,13 @@
         </div>
         <span class="likes">2.7k likes</span>
         <p class="username">@{{ profile.user.username }}</p>
+          {% if global_profile == profile %}
+              <a href="{% url 'delete' username=global_profile.user.username idx=p.id %}" class="trash"><img src="{% static 'accounts/img/trash.jpg' %}"></a>
+          {% endif %}
+
         <p class="post-des">{{ p.text }}</p>
+
+
 
         <div class="comment-box">
           <input type="text" id="comment-input" placeholder="Add a comment">

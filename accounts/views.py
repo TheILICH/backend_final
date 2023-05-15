@@ -155,6 +155,11 @@ def user_profile(request, username):
         if f.followed == profile.user and f.follower == global_profile.user:
             text = 'Unfollow'
 
+    s = Follow.objects.filter(followed=user)
+    sub = len(s) or 0
+    ss = Follow.objects.filter(follower=user)
+    sub2 = len(ss) or 0
+
     content = {
         'posts': posts,
         'profile': profile,
@@ -162,6 +167,8 @@ def user_profile(request, username):
         'button_text': text,
         'ok': True,
         'global_profile': global_profile,
+        'sub': sub,
+        'sub2': sub2,
     }
 
     return render(request, 'user_profile.html', content)
@@ -191,7 +198,7 @@ def post_view(request, username, idx=-1):
         new_post.creator = user
         new_post.save()
 
-        return redirect('edit', username=user.username, idx=new_post.id)
+        return redirect('profile', username=user.username)
 
     content = {
         'form': form,
@@ -261,6 +268,16 @@ def following(request, username, idx):
         Follow.objects.get(id=index).delete()
 
     return redirect('profile', username=followed.username)
+
+
+def post_delete(request, username, idx):
+
+    post = Post.objects.get(id=idx)
+    post.delete()
+
+    return redirect('profile', username=username)
+
+
 
 
 

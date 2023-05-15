@@ -542,3 +542,19 @@ body{
     width: 80%;
     resize: none;
 }
+
+.pencil{
+    width: 20px;
+}
+
+
+
+.trash{
+    background: red;
+    border-radius: 24px;
+    float: right;
+}
+.trash img{
+    width: 20px;
+    height: 20px;
+}
