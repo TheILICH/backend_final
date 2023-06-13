@@ -52,7 +52,6 @@ def home(request):
         if ok:
             rand.append(p)
 
-
     # for r in Follow.objects.all():
     #     if r.follower == request.user:
     #         continue
@@ -134,7 +133,8 @@ def user_profile(request, username):
 
     if exist == 0:
         messages.info(request,
-            f'There is not such profile with username = {username}. Instead you can create new profile with such username!')
+                      f'There is not such profile with username = {username}. Instead you can create new profile with '
+                      f'such username!')
         return redirect('register')
 
     print(f'METHOD = {request.method}')
@@ -216,7 +216,7 @@ def edit_profile(request, username):
 
     if exist == 0:
         messages.info(request,
-            f'There is not such profile with username = {username}. Instead you can create new profile with such username!')
+                      f'There is not such profile with username = {username}. Instead you can create new profile with such username!')
         return redirect('register')
 
     user = User.objects.get(username=username)
@@ -252,7 +252,6 @@ def edit_profile(request, username):
 
 
 def following(request, username, idx):
-
     user = User.objects.get(username=username)
     followed = User.objects.get(id=idx)
 
@@ -271,13 +270,7 @@ def following(request, username, idx):
 
 
 def post_delete(request, username, idx):
-
     post = Post.objects.get(id=idx)
     post.delete()
 
     return redirect('profile', username=username)
-
-
-
-
-
