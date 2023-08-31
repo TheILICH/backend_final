@@ -15,6 +15,9 @@ class Follow(models.Model):
     followed = models.ForeignKey(User, related_name='followed', on_delete=models.CASCADE)
     follower = models.ForeignKey(User, related_name='follower', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.follower} => {self.followed}'
+
 
 class Post(models.Model):
     text = models.TextField()
